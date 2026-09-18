@@ -138,23 +138,55 @@
       align-items: center;
       gap: 10px;
     }
-    .theme-toggle, .icon-btn {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--ink);
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      display: flex;
+    .theme-toggle {
+      background: #141414;
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      padding: 7px 14px;
+      border-radius: 9999px;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
+      gap: 7px;
       cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 700;
+      line-height: 1;
       transition: all 0.2s ease;
+      box-shadow: 0 0 12px rgba(208, 135, 46, 0.25);
     }
-    .theme-toggle:hover, .icon-btn:hover {
-      background: var(--chip-hover);
-      border-color: var(--accent);
+    :root[data-theme="dark"] .theme-toggle {
+      background: #181818;
+      border-color: #d0872e;
+      color: #f0ab56;
+      box-shadow: 0 0 14px rgba(208, 135, 46, 0.25);
+    }
+    :root[data-theme="dark"] .theme-toggle:hover {
+      background: #242424;
+      border-color: #f0ab56;
       transform: translateY(-1px);
+      box-shadow: 0 0 20px rgba(208, 135, 46, 0.4);
+    }
+    :root[data-theme="light"] .theme-toggle {
+      background: #ffffff;
+      border-color: #d0872e;
+      color: #000000;
+      box-shadow: 0 2px 8px rgba(208, 135, 46, 0.2);
+    }
+    :root[data-theme="light"] .theme-toggle:hover {
+      background: #fcf7ef;
+      border-color: #b87322;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(208, 135, 46, 0.3);
+    }
+    .theme-toggle svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      flex-shrink: 0;
+    }
+    @media (max-width: 480px) {
+      .theme-text { display: none; }
+      .theme-toggle { padding: 8px 10px; }
     }
 
     /* Header Hero */
@@ -789,8 +821,9 @@
       </a>
       <div class="nav-actions">
         <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
-          <svg id="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
-          <svg id="sun-icon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+          <svg id="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+          <svg id="moon-icon" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+          <span id="theme-text" class="theme-text">Light Mode</span>
         </button>
       </div>
     </nav>
@@ -962,16 +995,19 @@
     const themeToggle = $('theme-toggle');
     const moonIcon = $('moon-icon');
     const sunIcon = $('sun-icon');
+    const themeText = $('theme-text');
 
     function setTheme(theme) {
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
       if (theme === 'dark') {
-        moonIcon.classList.remove('hidden');
-        sunIcon.classList.add('hidden');
-      } else {
-        moonIcon.classList.add('hidden');
         sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+        if (themeText) themeText.textContent = 'Light Mode';
+      } else {
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+        if (themeText) themeText.textContent = 'Dark Mode';
       }
     }
 
