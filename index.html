@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PayBits — Smart UPI Payment Splitter (Under ₹2,000)</title>
-  <meta name="description" content="PayBits splits merchant UPI payments over ₹2,000 into sub-₹2K chunks to avoid the 0.4% MDR fee. Includes instant QR codes, 1-tap UPI app launchers, and WhatsApp sharing." />
+  <meta name="description" content="PayBits splits large UPI payments into smart, manageable chunks under ₹2,000. Includes instant QR codes, 1-tap UPI app launchers, and WhatsApp sharing." />
   <link rel="icon" type="image/png" href="favicon.png" />
   <meta name="theme-color" content="#000000" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -822,7 +822,7 @@
         <img src="logo.png" alt="PayBits Logo" class="brand-logo-img" />
         <div class="brand-text">
           <div class="brand-title">Pay<span>Bits</span></div>
-          <div class="brand-tag">0.4% MDR Bypass & Splitter</div>
+          <div class="brand-tag">Smart UPI Splitter</div>
         </div>
       </a>
       <div class="nav-actions">
@@ -836,12 +836,8 @@
 
     <!-- Hero -->
     <header>
-      <div class="badge-pill">
-        <svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 10v4h2v-4h-2zm0 6v2h2v-2h-2z"/></svg>
-        RBI / NPCI 0.4% MDR Rule
-      </div>
       <h1>Split UPI payments into smart <span>PayBits</span></h1>
-      <p>Merchant UPI payments above ₹2,000 attract a 0.4% MDR surcharge. PayBits splits any bill into chunks of ₹1,999 or less with instant QR codes, 1-tap app launchers, and WhatsApp receipts.</p>
+      <p>PayBits splits any large bill or payment into convenient sub-₹2,000 chunks with individual QR codes, 1-tap UPI app launchers, and WhatsApp receipts.</p>
     </header>
 
     <!-- Main Input Form -->
@@ -915,8 +911,8 @@
           <div class="val" id="s-each">—</div>
         </div>
         <div class="card stat-card good">
-          <span class="stat-badge">SAVED</span>
-          <div class="label">0.4% MDR Fee Avoided</div>
+          <span class="stat-badge">TOTAL</span>
+          <div class="label">Total Bill Amount</div>
           <div class="val" id="s-saved">—</div>
         </div>
       </div>
@@ -939,7 +935,7 @@
       <!-- All Completed Celebration -->
       <div class="celebration-box hidden" id="celebration-box">
         <h3>🎉 All PayBits Completed!</h3>
-        <p>You have successfully settled the entire bill in safe sub-₹2,000 chunks without triggering the 0.4% MDR merchant surcharge.</p>
+        <p>You have successfully completed all payment chunks for this bill.</p>
       </div>
 
       <!-- Toolbar -->
@@ -964,9 +960,7 @@
     <!-- Footer & Disclaimers -->
     <footer>
       <p id="disclaimer">
-        <strong>Disclaimer:</strong> PayBits is an independent open-source utility, not affiliated with NPCI, RBI, or any bank/UPI application. No payment data or credentials are ever stored or transmitted.
-        Not financial or legal advice. Splitting transactions to circumvent merchant terms may be governed by your bank/PSP agreements. Always verify payee UPI ID and amount before authorizing UPI PIN.
-        Provided as-is.
+        <strong>Disclaimer:</strong> PayBits is an independent utility. No payments or transactions are processed through this website, and no financial data or credentials leave your browser. Always verify the payee UPI ID and amount before authorizing any payment in your UPI app. Provided as-is.
       </p>
       <div class="byline">
         <div class="badge-privacy">
@@ -995,7 +989,6 @@
     let currentVpa = '';
     let currentName = '';
     let currentTotalPaise = 0;
-    let currentSavedPaise = 0;
 
     // Theme Management
     const themeToggle = $('theme-toggle');
@@ -1048,12 +1041,6 @@
       return Array.from({ length: n }, (_, i) =>
         base + (i < extraRupees ? 100 : 0) + (i === n - 1 ? paise : 0)
       );
-    }
-
-    function calculateMdr(totalPaise) {
-      if (totalPaise <= 200000) return 0;
-      // 0.4% MDR charge
-      return Math.min(Math.round(totalPaise * 0.004), 30000);
     }
 
     // URI link generators
@@ -1118,11 +1105,10 @@
       currentTotalPaise = total;
       currentChunks = split(total, cap);
       paidStatus = new Array(currentChunks.length).fill(false);
-      currentSavedPaise = calculateMdr(total);
 
       $('s-count').textContent = currentChunks.length + (currentChunks.length === 1 ? ' Bit' : ' Bits');
       $('s-each').textContent = inr.format(currentChunks[0] / 100);
-      $('s-saved').textContent = inr.format(currentSavedPaise / 100);
+      $('s-saved').textContent = inr.format(total / 100);
 
       const grid = $('chunks');
       grid.innerHTML = '';
@@ -1132,7 +1118,7 @@
           <div class="card empty-state" style="grid-column: 1 / -1;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             <h3>No split required!</h3>
-            <p>Bill is ₹${(cap / 100).toLocaleString('en-IN')} or under. No 0.4% MDR surcharge applies to transactions within this threshold.</p>
+            <p>Bill is ₹${(cap / 100).toLocaleString('en-IN')} or under. No payment split needed for this amount.</p>
           </div>`;
         $('progress-box').classList.add('hidden');
         $('celebration-box').classList.add('hidden');
@@ -1299,7 +1285,6 @@
         `PayBits Summary for ${inr.format(currentTotalPaise / 100)}:`,
         currentName ? `Merchant: ${currentName}` : null,
         currentVpa ? `UPI ID: ${currentVpa}` : null,
-        `MDR Saved: ${inr.format(currentSavedPaise / 100)}`,
         '-------------------------'
       ].filter(Boolean);
 
@@ -1320,7 +1305,6 @@
         `💰 *Total:* ${inr.format(currentTotalPaise / 100)}`,
         currentName ? `🏪 *Merchant:* ${currentName}` : null,
         currentVpa ? `🆔 *UPI ID:* ${currentVpa}` : null,
-        currentSavedPaise > 0 ? `✨ *MDR Fee Saved:* ${inr.format(currentSavedPaise / 100)}` : null,
         `━━━━━━━━━━━━━━━━━━`,
         `*Pay in ${currentChunks.length} PayBits (under ₹2,000 each):*`,
         ``
@@ -1336,7 +1320,7 @@
       });
 
       msgLines.push(`━━━━━━━━━━━━━━━━━━`);
-      msgLines.push(`Split via PayBits • Safe sub-₹2,000 UPI payments`);
+      msgLines.push(`Split via PayBits • Smart UPI payments`);
 
       const fullText = encodeURIComponent(msgLines.join('\n'));
       window.open(`https://api.whatsapp.com/send?text=${fullText}`, '_blank');

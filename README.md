@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <b>Split large merchant UPI payments into smart, sub-₹2,000 PayBits to dodge the 0.4% MDR surcharge.</b><br/>
+  <b>Split large UPI payments into smart, manageable sub-₹2,000 PayBits.</b><br/>
   Each chunk gets an instant UPI QR code, 1-tap mobile app deep links, and live payment status tracking.
 </p>
 
@@ -45,5 +45,5 @@ python3 -m http.server 4321
 ```
 
 ## ⚖️ Disclaimer
-
-PayBits is an independent open-source utility, not affiliated with NPCI, RBI, or any bank/UPI provider. No payments are processed through this website. Always verify the payee UPI ID and amount in your UPI application before authorizing with your UPI PIN.
+ 
+PayBits is an independent utility. No payments are processed through this website, and no financial data or credentials leave your browser. Always verify the payee UPI ID and amount in your UPI application before authorizing with your UPI PIN. Provided as-is.
