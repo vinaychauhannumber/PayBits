@@ -1,0 +1,22 @@
+{
+  "name": "PayBits — Smart UPI Payment Splitter",
+  "short_name": "PayBits",
+  "description": "Split UPI payments into smart chunks with instant QR codes, 1-tap app launchers, and WhatsApp sharing.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ]
+}
