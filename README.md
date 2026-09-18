@@ -26,6 +26,12 @@
 - **🔒 100% Client-Side Privacy**: Zero servers, zero trackers, zero databases. No financial data or UPI IDs ever leave your browser.
 - **🔗 Shareable Links**: Deep-link support via URL query parameters (e.g. `?amount=5000&vpa=merchant@upi&name=Store`).
 
+## ⚡ Deploy to Vercel
+
+Deploy your own instance of PayBits in one click:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vinaychauhannumber/PayBits)
+
 ## 🚀 Running Locally
 
 Static single-page application. Open `index.html` directly in any web browser, or serve it locally:
