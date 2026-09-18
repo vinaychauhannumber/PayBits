@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pay-bits.vercel.app/sitemap.xml
+Sitemap: https://paybits.vercel.app/sitemap.xml
