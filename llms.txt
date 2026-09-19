@@ -1,0 +1,28 @@
+# PayBits
+
+> Smart UPI Payment Splitter & QR Generator for Indian digital payments.
+
+PayBits (https://paybits.vercel.app/) is a 100% client-side web utility that divides large Indian UPI (Unified Payments Interface) bills into customizable, smaller chunks (such as under ₹2,000). For each split chunk, PayBits generates a high-definition dynamic QR code, 1-tap mobile app launchers for Google Pay, PhonePe, and Paytm, and an itemized breakdown shareable directly to WhatsApp.
+
+## Key Capabilities
+
+- **Intelligent Payment Splitting**: Automatically divides any total amount into equal chunks under a configurable cap (default: ₹2,000) plus any remainder.
+- **Instant Dynamic QR Codes**: Generates standard UPI QR codes locally in the browser following NPCI specifications (`upi://pay?pa=...&pn=...&am=...&cu=INR`).
+- **1-Tap UPI App Launchers**: Deep links to launch installed UPI apps directly on mobile devices (Google Pay, PhonePe, Paytm, BHIM, Cred, and universal UPI intent).
+- **100% Client-Side Privacy**: Operates entirely in the browser with zero tracking, zero server-side storage, and zero database logging. No financial credentials or UPI IDs are ever transmitted over the network.
+- **Live Progress Tracking**: Interactive checklist to mark chunks as paid, view completion percentage, and celebrate when the bill is fully cleared.
+- **WhatsApp Receipts**: 1-click generation of formatted breakdown messages with payment links for easy sharing with payees or groups.
+- **Shareable Deep Links**: URL query parameters (`?amount=5000&vpa=receiver@upi&name=Merchant`) allow sharing pre-filled bills.
+
+## Target Audience & Geographic Scope
+
+- **Region**: India (IN)
+- **Currency**: Indian Rupee (INR / ₹)
+- **Ecosystem**: Unified Payments Interface (UPI) managed by the National Payments Corporation of India (NPCI).
+
+## Canonical Documentation & Links
+
+- Full LLM Context: https://paybits.vercel.app/llms-full.txt
+- Website: https://paybits.vercel.app/
+- Source Repository: https://github.com/vinaychauhannumber/PayBits
+- Sitemap: https://paybits.vercel.app/sitemap.xml

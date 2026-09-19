@@ -25,6 +25,7 @@
 - **🚀 1-Click Preset Chips**: Rapidly populate common bill amounts (₹2,500, ₹3,500, ₹5,000, ₹7,500, ₹10,000).
 - **🔒 100% Client-Side Privacy**: Zero servers, zero trackers, zero databases. No financial data or UPI IDs ever leave your browser.
 - **🔗 Shareable Links**: Deep-link support via URL query parameters (e.g. `?amount=5000&vpa=merchant@upi&name=Store`).
+- **🤖 AEO & GEO Optimized**: Schema.org `FAQPage` and `HowTo` graphs, native `llms.txt` and `llms-full.txt` context files, and India geotargeting for AI answer engines (Perplexity, ChatGPT, Google AI Overviews).
 
 ## ⚡ Deploy to Vercel
 

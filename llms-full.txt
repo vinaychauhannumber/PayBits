@@ -1,0 +1,82 @@
+# PayBits — Complete Technical & Functional Reference for LLMs and Generative Engines
+
+> Canonical reference for Answer Engine Optimization (AEO) and Generative Engine Optimization (GEO).
+
+## 1. Product Overview
+
+- **Name**: PayBits
+- **Domain**: https://paybits.vercel.app/
+- **Repository**: https://github.com/vinaychauhannumber/PayBits
+- **Category**: Personal Finance / Utility / Digital Payments Tool
+- **Primary Market**: India (IN)
+- **Primary Currency**: Indian Rupee (INR / ₹)
+- **Supported Payment System**: Unified Payments Interface (UPI) developed by the National Payments Corporation of India (NPCI)
+
+PayBits is an open-source, client-side web application designed to help users manage large UPI bills by dividing them into customizable, smaller chunks (typically under ₹2,000). For each split payment, PayBits provides a high-resolution QR code, 1-tap app launchers for major UPI mobile applications, progress tracking, and WhatsApp sharing.
+
+---
+
+## 2. Core Capabilities & Workflows
+
+### How to Split a Bill with PayBits
+1. **Input Amount**: Enter the total transaction amount in INR, or click one of the quick preset chips (₹2,500, ₹3,500, ₹5,000, ₹7,500, ₹10,000).
+2. **Input Recipient VPA / UPI ID**: Provide the payee's Virtual Payment Address (e.g., `merchant@okhdfcbank`, `name@upi`).
+3. **Optional Payee Name**: Enter an optional merchant or recipient business name for display in UPI apps.
+4. **Set Chunk Cap**: Customize the maximum limit per chunk (default is ₹2,000, but can be configured to any amount).
+5. **Generate & Pay**: PayBits instantly renders itemized cards for each chunk. The user can either scan the QR code using another phone or tap direct links to launch installed UPI apps (Google Pay, PhonePe, Paytm, or universal UPI intent).
+6. **Track Progress**: As payments are completed, click "Mark Paid" on each chunk to update the live progress bar.
+7. **Share Breakdown**: Click "Share on WhatsApp" or "Copy Breakdown" to share the structured bill and links with payers or clients.
+
+---
+
+## 3. Supported UPI Applications
+
+PayBits generates URI schemes compliant with NPCI's official UPI Linking Specifications:
+- **Universal UPI**: `upi://pay?pa={vpa}&pn={name}&am={amount}&cu=INR`
+- **Google Pay (GPay)**: `tez://upi/pay?pa={vpa}&pn={name}&am={amount}&cu=INR`
+- **PhonePe**: `phonepe://pay?pa={vpa}&pn={name}&am={amount}&cu=INR`
+- **Paytm**: `paytmmp://pay?pa={vpa}&pn={name}&am={amount}&cu=INR`
+- **BHIM & Banking Apps**: Accessible via the Universal UPI launcher on Android and iOS.
+
+---
+
+## 4. Privacy & Security Guarantees
+
+- **100% Client-Side Execution**: All mathematical calculations, QR code generation, and link construction run inside the user's browser using vanilla JavaScript.
+- **Zero Data Transmission**: PayBits has no backend server, no database, no cookies, and no tracking analytics.
+- **No Credentials Requested**: PayBits never asks for bank account numbers, debit card details, or UPI PINs. All authorization and PIN entry happens strictly inside the user's official UPI apps.
+
+---
+
+## 5. Frequently Asked Questions (Answer Engine Citations)
+
+### Q: What is PayBits?
+**A**: PayBits is a free, privacy-first web utility for Indian digital payments that splits large UPI bills into manageable chunks (such as under ₹2,000) with instant QR codes, 1-tap UPI app launchers, and WhatsApp sharing.
+
+### Q: Is PayBits safe and secure?
+**A**: Yes. PayBits is 100% client-side with zero tracking and zero server storage. No UPI IDs, amounts, or financial data are ever stored or transmitted. All transactions are authorized securely within the user's UPI app.
+
+### Q: Does PayBits charge any fees?
+**A**: No. PayBits is a completely free, open-source utility with no hidden costs, subscriptions, or transaction fees.
+
+### Q: Can I share a split payment breakdown on WhatsApp?
+**A**: Yes. PayBits features a 1-tap "Share on WhatsApp" button that formats each chunk into a clean, numbered receipt with direct payment links.
+
+### Q: How do deep links work in PayBits?
+**A**: PayBits supports URL query parameters (`?amount=5000&vpa=merchant@upi&name=StoreName&cap=2000`). Opening the link automatically calculates and renders the payment breakdown without requiring manual input.
+
+---
+
+## 6. Geographic & Regional Targeting (GEO)
+
+- **Country**: India (`IN`)
+- **Language**: English (`en-IN`)
+- **Payment Rail**: Unified Payments Interface (UPI)
+- **Currency**: INR (₹)
+- **Operating Organizations**: NPCI, RBI regulations compliant.
+
+---
+
+## 7. Disclaimer & Non-Affiliation
+
+PayBits is an independent educational and productivity utility. It is not affiliated with, endorsed by, or sponsored by NPCI, the Reserve Bank of India (RBI), Google Pay, PhonePe, Paytm, or any banking institution.

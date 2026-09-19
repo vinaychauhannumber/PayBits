@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# Canonical Sitemaps & LLM Context
 Sitemap: https://paybits.vercel.app/sitemap.xml
+
+# LLM & AI Engine Documentation (AEO / GEO)
+# Context: https://paybits.vercel.app/llms.txt
+# Full Reference: https://paybits.vercel.app/llms-full.txt
